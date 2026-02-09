@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Finndoff Design System */
+/* TODO: Replace placeholder tokens with final brand palette */
+:root {
+  /* Primary */
+  --color-primary: #1a365d;
+  --color-primary-light: #2a4a7f;
+  --color-primary-muted: #1a365d20;
+
+  /* Secondary */
+  --color-secondary: #c05621;
+  --color-secondary-light: #d4703a;
+  --color-secondary-muted: #c0562120;
+
+  /* Text */
+  --color-text-primary: #1a1c20;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+
+  /* UI */
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  /* Backgrounds */
+  --background: #fafbfc;
+  --foreground: #1a1c20;
+  --color-bg-white: #ffffff;
+  --color-bg-warm: #f5f5f3;
+  --color-bg-section: #f8f9fa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, -apple-system, sans-serif;
+}
