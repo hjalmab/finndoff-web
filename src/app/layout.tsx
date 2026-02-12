@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Roboto, Work_Sans } from "next/font/google";
 import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
-const display = Plus_Jakarta_Sans({
-  variable: "--font-display",
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="no">
       <body
-        className={`${inter.variable} ${display.variable} antialiased`}
+        className={`${roboto.variable} ${workSans.variable} antialiased`}
       >
         {children}
         <VisualEditingWrapper />
