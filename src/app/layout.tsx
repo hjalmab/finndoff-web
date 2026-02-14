@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Work_Sans } from "next/font/google";
 import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
+import { LayoutShell } from "@/components/LayoutShell";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${workSans.variable} antialiased`}
       >
-        {children}
+        <LayoutShell>{children}</LayoutShell>
         <VisualEditingWrapper />
       </body>
     </html>
