@@ -73,3 +73,17 @@ body {
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
 }
+
+/* ── TrustBar scroll animation ── */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}

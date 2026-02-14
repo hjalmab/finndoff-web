@@ -1,0 +1,198 @@
+import type { PortableTextBlock } from 'next-sanity'
+
+// Shared types
+export interface SanityImage {
+  _type?: 'image'
+  alt?: string
+  caption?: string
+  asset?: { _ref: string; _type: 'reference' }
+  hotspot?: { x: number; y: number; height: number; width: number }
+  crop?: { top: number; bottom: number; left: number; right: number }
+}
+
+export interface CtaLink {
+  text?: string
+  link?: string
+}
+
+export type SectionStyle = 'default' | 'dark' | 'brand'
+
+// Module types
+
+export interface HeroSection {
+  _type: 'hero'
+  _key: string
+  headline: string
+  subheadline?: string
+  primaryCta?: CtaLink
+  secondaryCta?: CtaLink
+  image?: SanityImage
+  style?: SectionStyle
+}
+
+export interface FeatureGridSection {
+  _type: 'featureGrid'
+  _key: string
+  title?: string
+  subtitle?: string
+  columns?: 2 | 3 | 4
+  features?: {
+    _key: string
+    title: string
+    description?: string
+    icon?: string
+    link?: string
+  }[]
+}
+
+export interface PricingTableSection {
+  _type: 'pricingTable'
+  _key: string
+  title?: string
+  subtitle?: string
+  plans?: {
+    _key: string
+    name: string
+    price?: number
+    priceLabel?: string
+    description?: string
+    isAddon?: boolean
+    highlighted?: boolean
+    features?: string[]
+    ctaText?: string
+    ctaLink?: string
+  }[]
+}
+
+export interface TrustBarSection {
+  _type: 'trustBar'
+  _key: string
+  title?: string
+  logos?: {
+    _key: string
+    name: string
+    logo?: SanityImage
+    link?: string
+  }[]
+  style?: 'grid' | 'scrolling'
+}
+
+export interface TestimonialSection {
+  _type: 'testimonial'
+  _key: string
+  quote: string
+  name?: string
+  role?: string
+  company?: string
+  image?: SanityImage
+}
+
+export interface VideoEmbedSection {
+  _type: 'videoEmbed'
+  _key: string
+  title?: string
+  videoUrl: string
+  thumbnail?: SanityImage
+  caption?: string
+}
+
+export interface CtaSectionSection {
+  _type: 'ctaSection'
+  _key: string
+  title?: string
+  description?: string
+  primaryCta?: CtaLink
+  secondaryCta?: CtaLink
+  style?: SectionStyle
+}
+
+export interface FaqAccordionSection {
+  _type: 'faqAccordion'
+  _key: string
+  title?: string
+  subtitle?: string
+  items?: {
+    _key: string
+    question: string
+    answer: PortableTextBlock[]
+  }[]
+}
+
+export interface TimelineSection {
+  _type: 'timeline'
+  _key: string
+  title?: string
+  subtitle?: string
+  steps?: {
+    _key: string
+    stepNumber?: number
+    title: string
+    description?: string
+    icon?: string
+    duration?: string
+  }[]
+}
+
+export interface PartnerShowcaseSection {
+  _type: 'partnerShowcase'
+  _key: string
+  title?: string
+  subtitle?: string
+  partners?: {
+    _id: string
+    name: string
+    slug?: { current: string }
+    logo?: SanityImage
+    description?: string
+    website?: string
+  }[]
+  style?: 'grid' | 'slider'
+}
+
+export interface ComparisonTableSection {
+  _type: 'comparisonTable'
+  _key: string
+  title?: string
+  subtitle?: string
+  columns?: {
+    _key: string
+    name: string
+    highlighted?: boolean
+  }[]
+  rows?: {
+    _key: string
+    feature: string
+    values?: string[]
+  }[]
+}
+
+export interface TextSectionSection {
+  _type: 'textSection'
+  _key: string
+  title?: string
+  content?: PortableTextBlock[]
+}
+
+export type Section =
+  | HeroSection
+  | FeatureGridSection
+  | PricingTableSection
+  | TrustBarSection
+  | TestimonialSection
+  | VideoEmbedSection
+  | CtaSectionSection
+  | FaqAccordionSection
+  | TimelineSection
+  | PartnerShowcaseSection
+  | ComparisonTableSection
+  | TextSectionSection
+
+export interface PageDocument {
+  _id: string
+  title?: string
+  slug?: { current: string }
+  seoTitle?: string
+  seoDescription?: string
+  ogImage?: SanityImage
+  sections?: Section[]
+}

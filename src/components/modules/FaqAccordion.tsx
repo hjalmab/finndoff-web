@@ -1,0 +1,56 @@
+'use client'
+
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
+import type { FaqAccordionSection } from '@/types/sanity'
+
+export function FaqAccordion({ section }: { section: FaqAccordionSection }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  return (
+    <section className="bg-white py-16 lg:py-24">
+      <div className="mx-auto max-w-3xl px-6">
+        {(section.title || section.subtitle) && (
+          <div className="mb-12 text-center">
+            {section.title && (
+              <h2 className="font-display text-3xl font-bold lg:text-4xl">
+                {section.title}
+              </h2>
+            )}
+            {section.subtitle && (
+              <p className="mt-4 text-lg text-navy-600">{section.subtitle}</p>
+            )}
+          </div>
+        )}
+        <div className="divide-y divide-navy-100 border-y border-navy-100">
+          {section.items?.map((item, index) => {
+            const isOpen = openIndex === index
+            return (
+              <div key={item._key}>
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                >
+                  <span className="font-display text-lg font-semibold text-navy-900">
+                    {item.question}
+                  </span>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 text-navy-400 transition-transform ${
+                      isOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="pb-5 text-navy-700">
+                    <PortableTextRenderer value={item.answer} />
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

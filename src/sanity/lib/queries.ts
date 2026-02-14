@@ -9,7 +9,11 @@ export const pageQuery = `*[_type == "page" && slug.current == $slug][0] {
   sections[] {
     _type,
     _key,
-    ...
+    ...,
+    _type == "partnerShowcase" => {
+      ...,
+      partners[]-> { _id, name, slug, logo, description, website }
+    }
   }
 }`
 
