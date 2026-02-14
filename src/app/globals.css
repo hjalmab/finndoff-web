@@ -87,3 +87,10 @@ body {
 .animate-scroll {
   animation: scroll 30s linear infinite;
 }
+
+/* ── Glass effect for sticky header ── */
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
