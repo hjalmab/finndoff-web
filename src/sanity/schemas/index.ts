@@ -21,6 +21,7 @@ import timeline from './modules/timeline'
 import partnerShowcase from './modules/partnerShowcase'
 import comparisonTable from './modules/comparisonTable'
 import textSection from './modules/textSection'
+import pricingCalculator from './modules/pricingCalculator'
 
 export const schemaTypes = [
   // Documents
@@ -46,4 +47,5 @@ export const schemaTypes = [
   partnerShowcase,
   comparisonTable,
   textSection,
+  pricingCalculator,
 ]

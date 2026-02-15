@@ -173,6 +173,13 @@ export interface TextSectionSection {
   content?: PortableTextBlock[]
 }
 
+export interface PricingCalculatorSection {
+  _type: 'pricingCalculator'
+  _key: string
+  title?: string
+  subtitle?: string
+}
+
 export type Section =
   | HeroSection
   | FeatureGridSection
@@ -186,6 +193,7 @@ export type Section =
   | PartnerShowcaseSection
   | ComparisonTableSection
   | TextSectionSection
+  | PricingCalculatorSection
 
 export interface PageDocument {
   _id: string
