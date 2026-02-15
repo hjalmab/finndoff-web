@@ -196,3 +196,18 @@ export interface PageDocument {
   ogImage?: SanityImage
   sections?: Section[]
 }
+
+export interface ProductDocument {
+  _id: string
+  title?: string
+  slug?: { current: string }
+  subtitle?: string
+  description?: string
+  icon?: string
+  price?: number
+  priceLabel?: string
+  isAddon?: boolean
+  seoTitle?: string
+  seoDescription?: string
+  sections?: Section[]
+}
