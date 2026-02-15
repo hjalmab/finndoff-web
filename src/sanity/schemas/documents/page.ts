@@ -53,6 +53,7 @@ export default defineType({
         { type: 'partnerShowcase' },
         { type: 'comparisonTable' },
         { type: 'textSection' },
+        { type: 'pricingCalculator' },
       ],
     }),
   ],
