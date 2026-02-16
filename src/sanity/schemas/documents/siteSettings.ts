@@ -28,6 +28,18 @@ export default defineType({
       type: 'image',
     }),
     defineField({
+      name: 'icon',
+      title: 'Ikon',
+      type: 'image',
+      description: 'Logo-ikon uten tekst (brukes til favicon, navbar, OG-bilder)',
+    }),
+    defineField({
+      name: 'iconDark',
+      title: 'Ikon (mørk bakgrunn)',
+      type: 'image',
+      description: 'Logo-ikon for mørk bakgrunn',
+    }),
+    defineField({
       name: 'primaryCta',
       title: 'Global primær CTA',
       type: 'object',
