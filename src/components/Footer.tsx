@@ -13,7 +13,7 @@ const companyLinks = [
   { label: 'Om oss', href: '/om-oss' },
   { label: 'Blogg', href: '/blogg' },
   { label: 'Personvern', href: '/personvern' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Kontakt', href: '/om-oss#kontakt' },
 ]
 
 export function Footer() {

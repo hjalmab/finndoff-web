@@ -54,6 +54,8 @@ export default defineType({
         { type: 'comparisonTable' },
         { type: 'textSection' },
         { type: 'pricingCalculator' },
+        { type: 'teamGrid' },
+        { type: 'contactSection' },
       ],
     }),
   ],

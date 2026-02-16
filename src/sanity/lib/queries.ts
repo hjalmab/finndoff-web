@@ -13,6 +13,10 @@ export const pageQuery = `*[_type == "page" && slug.current == $slug][0] {
     _type == "partnerShowcase" => {
       ...,
       partners[]-> { _id, name, slug, logo, description, website }
+    },
+    _type == "teamGrid" => {
+      ...,
+      persons[]-> { _id, name, role, image, bio, linkedIn, type }
     }
   }
 }`

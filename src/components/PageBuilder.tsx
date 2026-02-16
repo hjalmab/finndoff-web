@@ -12,6 +12,8 @@ import { PartnerShowcase } from './modules/PartnerShowcase'
 import { ComparisonTable } from './modules/ComparisonTable'
 import { TextSection } from './modules/TextSection'
 import { PricingCalculator } from './modules/PricingCalculator'
+import { TeamGrid } from './modules/TeamGrid'
+import { ContactSection } from './modules/ContactSection'
 
 const componentMap: Record<string, React.ComponentType<{ section: any }>> = {
   hero: Hero,
@@ -27,6 +29,8 @@ const componentMap: Record<string, React.ComponentType<{ section: any }>> = {
   comparisonTable: ComparisonTable,
   textSection: TextSection,
   pricingCalculator: PricingCalculator,
+  teamGrid: TeamGrid,
+  contactSection: ContactSection,
 }
 
 export function PageBuilder({ sections }: { sections?: Section[] }) {

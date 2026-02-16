@@ -180,6 +180,49 @@ export interface PricingCalculatorSection {
   subtitle?: string
 }
 
+export interface PersonData {
+  _id: string
+  name: string
+  role?: string
+  image?: SanityImage
+  bio?: string
+  email?: string
+  phone?: string
+  linkedIn?: string
+  type?: 'team' | 'board'
+}
+
+export interface TeamGridSection {
+  _type: 'teamGrid'
+  _key: string
+  title?: string
+  subtitle?: string
+  persons?: PersonData[]
+  layout?: 'grid'
+}
+
+export interface ContactPersonInline {
+  _key: string
+  name?: string
+  role?: string
+  phone?: string
+  email?: string
+  bookingLink?: string
+}
+
+export interface ContactSectionSection {
+  _type: 'contactSection'
+  _key: string
+  title?: string
+  subtitle?: string
+  email?: string
+  phone?: string
+  address?: string
+  hubspotPortalId?: string
+  hubspotFormId?: string
+  contactPersons?: ContactPersonInline[]
+}
+
 export type Section =
   | HeroSection
   | FeatureGridSection
@@ -194,6 +237,8 @@ export type Section =
   | ComparisonTableSection
   | TextSectionSection
   | PricingCalculatorSection
+  | TeamGridSection
+  | ContactSectionSection
 
 export interface PageDocument {
   _id: string

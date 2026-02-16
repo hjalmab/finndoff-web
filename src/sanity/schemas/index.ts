@@ -22,6 +22,8 @@ import partnerShowcase from './modules/partnerShowcase'
 import comparisonTable from './modules/comparisonTable'
 import textSection from './modules/textSection'
 import pricingCalculator from './modules/pricingCalculator'
+import teamGrid from './modules/teamGrid'
+import contactSection from './modules/contactSection'
 
 export const schemaTypes = [
   // Documents
@@ -48,4 +50,6 @@ export const schemaTypes = [
   comparisonTable,
   textSection,
   pricingCalculator,
+  teamGrid,
+  contactSection,
 ]
