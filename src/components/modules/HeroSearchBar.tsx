@@ -49,7 +49,7 @@ export function HeroSearchBar() {
     if (cpvIds.size > 0)
       params.set('cpv', JSON.stringify(Array.from(cpvIds)))
 
-    const url = `https://app.finndoff.no/portal/search${params.toString() ? `?${params.toString()}` : ''}`
+    const url = `https://finndoff.no/portal/search${params.toString() ? `?${params.toString()}` : ''}`
     window.location.href = url
   }
 
