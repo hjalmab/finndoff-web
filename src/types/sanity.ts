@@ -26,6 +26,7 @@ export interface HeroSection {
   subheadline?: string
   primaryCta?: CtaLink
   secondaryCta?: CtaLink
+  showSearchBar?: boolean
   image?: SanityImage
   style?: SectionStyle
 }
