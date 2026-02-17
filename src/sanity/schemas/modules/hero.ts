@@ -36,6 +36,13 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'showSearchBar',
+      title: 'Vis søkebar',
+      description: 'Erstatter CTA-knappene med en søkebar for anbudssøk',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'image',
       title: 'Bilde',
       type: 'image',

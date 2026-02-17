@@ -40,6 +40,7 @@ const homepage = {
       headline: "Spar tid og vinn flere anbud",
       subheadline:
         "Anbudsekspertise og AI-verktøy under samme tak hjelper deg å vinne oppdrag i offentlig sektor.",
+      showSearchBar: true,
       primaryCta: {
         text: "Prøv gratis",
         link: "https://app.finndoff.no/register",
