@@ -3,6 +3,8 @@ import { pageQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
 import type { PageDocument } from '@/types/sanity'
 
+export const revalidate = 60
+
 export default async function Home() {
   const page = await client.fetch<PageDocument | null>(pageQuery, {
     slug: 'hjem',

@@ -6,6 +6,8 @@ import { PageBuilder } from '@/components/PageBuilder'
 import { DynamicIcon } from '@/components/ui/DynamicIcon'
 import type { ProductDocument } from '@/types/sanity'
 
+export const revalidate = 60
+
 interface Props {
   params: Promise<{ slug: string }>
 }
