@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { pageQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
-import { buildOgImageUrl, buildAlternates } from '@/lib/metadata'
+import { buildOgImageUrl, buildAlternates, stripTitleSuffix } from '@/lib/metadata'
 import type { PageDocument } from '@/types/sanity'
 
 export const revalidate = 60
@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     slug: 'om-oss',
   })
 
-  const title = page?.seoTitle || 'Om oss'
+  const title = page?.seoTitle ? stripTitleSuffix(page.seoTitle) : 'Om oss'
   const description =
     page?.seoDescription ||
     'Møt teamet bak Finndoff. Vi kombinerer teknologi og ekspertise for å hjelpe norske bedrifter vinne flere anbud.'

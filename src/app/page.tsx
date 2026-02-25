@@ -3,7 +3,7 @@ import { client } from '@/sanity/lib/client'
 import { pageQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
 import { JsonLd } from '@/components/JsonLd'
-import { buildOgImageUrl, buildAlternates, portableTextToPlain } from '@/lib/metadata'
+import { buildOgImageUrl, buildAlternates, portableTextToPlain, stripTitleSuffix } from '@/lib/metadata'
 import type { PageDocument, FaqAccordionSection } from '@/types/sanity'
 
 export const revalidate = 60
@@ -16,13 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = buildOgImageUrl(page?.ogImage)
 
   return {
-    title: page?.seoTitle || 'Finndoff — Finn og vinn offentlige anbud',
+    title: page?.seoTitle ? stripTitleSuffix(page.seoTitle) : 'Finndoff — Finn og vinn offentlige anbud',
     description:
       page?.seoDescription ||
       'Finndoff hjelper norske bedrifter med å finne, forstå og vinne offentlige anbud. Anbudsvarsling, innsikt og AI-drevet anbudshjelp.',
     alternates: buildAlternates('/'),
     openGraph: {
-      title: page?.seoTitle || 'Finndoff — Finn og vinn offentlige anbud',
+      title: page?.seoTitle ? stripTitleSuffix(page.seoTitle) : 'Finndoff — Finn og vinn offentlige anbud',
       description:
         page?.seoDescription ||
         'Finndoff hjelper norske bedrifter med å finne, forstå og vinne offentlige anbud.',

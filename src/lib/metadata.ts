@@ -5,6 +5,14 @@ import type { SanityImage } from '@/types/sanity'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finndoff.no'
 
 /**
+ * Strip trailing "| Finndoff" or "— Finndoff" suffix from a title.
+ * Prevents double suffix when combined with the title template.
+ */
+export function stripTitleSuffix(title: string): string {
+  return title.replace(/\s*[|—–-]\s*Finndoff\s*$/i, '').trim()
+}
+
+/**
  * Build an OG image URL from a Sanity image reference.
  * Returns a 1200×630 cropped URL string, or undefined if no image.
  */

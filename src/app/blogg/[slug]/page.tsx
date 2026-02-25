@@ -5,7 +5,7 @@ import { client } from '@/sanity/lib/client'
 import { blogPostQuery, blogPostsQuery } from '@/sanity/lib/queries'
 import { SanityImage } from '@/components/ui/SanityImage'
 import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
-import { buildOgImageUrl, buildAlternates, canonical } from '@/lib/metadata'
+import { buildOgImageUrl, buildAlternates, canonical, stripTitleSuffix } from '@/lib/metadata'
 import { JsonLd } from '@/components/JsonLd'
 import type { BlogPostDocument, BlogPostListItem } from '@/types/sanity'
 
@@ -45,7 +45,7 @@ export async function generateMetadata({
 
   if (!post) return { title: 'Innlegg ikke funnet' }
 
-  const title = post.seoTitle || post.title
+  const title = post.seoTitle ? stripTitleSuffix(post.seoTitle) : post.title
   const description = post.seoDescription || post.excerpt
   const ogImage = buildOgImageUrl(post.mainImage)
 

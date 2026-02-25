@@ -4,7 +4,7 @@ import { client } from '@/sanity/lib/client'
 import { productQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
 import { DynamicIcon } from '@/components/ui/DynamicIcon'
-import { buildOgImageUrl, buildAlternates, canonical } from '@/lib/metadata'
+import { buildOgImageUrl, buildAlternates, canonical, stripTitleSuffix } from '@/lib/metadata'
 import { JsonLd } from '@/components/JsonLd'
 import type { ProductDocument } from '@/types/sanity'
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) return {}
 
-  const title = product.seoTitle || product.title
+  const title = product.seoTitle ? stripTitleSuffix(product.seoTitle) : product.title
   const description = product.seoDescription || product.description
   const ogImage = buildOgImageUrl(product.ogImage)
 
