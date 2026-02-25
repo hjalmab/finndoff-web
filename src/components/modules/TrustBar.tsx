@@ -51,11 +51,11 @@ function LogoItem({
 
   if (logo.link) {
     return (
-      <a href={logo.link} target="_blank" rel="noopener noreferrer" title={logo.name}>
+      <a href={logo.link} target="_blank" rel="noopener noreferrer" title={logo.name} className="shrink-0">
         {img}
       </a>
     )
   }
 
-  return <div title={logo.name}>{img}</div>
+  return <div title={logo.name} className="shrink-0">{img}</div>
 }
