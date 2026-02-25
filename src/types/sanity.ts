@@ -295,5 +295,11 @@ export interface ProductDocument {
   isAddon?: boolean
   seoTitle?: string
   seoDescription?: string
+  ogImage?: SanityImage
   sections?: Section[]
+}
+
+export interface SitemapEntry {
+  slug: string
+  _updatedAt: string
 }

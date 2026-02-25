@@ -1,15 +1,24 @@
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { blogPostsQuery } from '@/sanity/lib/queries'
+import { buildAlternates } from '@/lib/metadata'
 import type { BlogPostListItem } from '@/types/sanity'
 import { BlogFilter } from './BlogFilter'
 
 export const revalidate = 60
 
-export const metadata: Metadata = {
-  title: 'Blogg — Finndoff',
-  description:
-    'Tips, nyheter og innsikt om offentlige anbud. Lær hvordan du vinner flere anbud med Finndoff.',
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Blogg',
+    description:
+      'Tips, nyheter og innsikt om offentlige anbud. Lær hvordan du vinner flere anbud med Finndoff.',
+    alternates: buildAlternates('/blogg'),
+    openGraph: {
+      title: 'Blogg | Finndoff',
+      description:
+        'Tips, nyheter og innsikt om offentlige anbud. Lær hvordan du vinner flere anbud med Finndoff.',
+    },
+  }
 }
 
 export default async function BloggPage() {

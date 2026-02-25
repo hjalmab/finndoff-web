@@ -5,6 +5,8 @@ import { client } from '@/sanity/lib/client'
 import { blogPostQuery, blogPostsQuery } from '@/sanity/lib/queries'
 import { SanityImage } from '@/components/ui/SanityImage'
 import { PortableTextRenderer } from '@/components/ui/PortableTextRenderer'
+import { buildOgImageUrl, buildAlternates, canonical } from '@/lib/metadata'
+import { JsonLd } from '@/components/JsonLd'
 import type { BlogPostDocument, BlogPostListItem } from '@/types/sanity'
 
 export const revalidate = 60
@@ -41,11 +43,23 @@ export async function generateMetadata({
     slug,
   })
 
-  if (!post) return { title: 'Innlegg ikke funnet — Finndoff' }
+  if (!post) return { title: 'Innlegg ikke funnet' }
+
+  const title = post.seoTitle || post.title
+  const description = post.seoDescription || post.excerpt
+  const ogImage = buildOgImageUrl(post.mainImage)
 
   return {
-    title: post.seoTitle || `${post.title} — Finndoff Blogg`,
-    description: post.seoDescription || post.excerpt,
+    title,
+    description,
+    alternates: buildAlternates(`/blogg/${slug}`),
+    openGraph: {
+      type: 'article',
+      title,
+      description: description || undefined,
+      ...(post.publishedAt && { publishedTime: post.publishedAt }),
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
+    },
   }
 }
 
@@ -61,8 +75,60 @@ export default async function BlogPostPage({
 
   if (!post) notFound()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finndoff.no'
+  const ogImageUrl = buildOgImageUrl(post.mainImage)
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title,
+          ...(post.excerpt && { description: post.excerpt }),
+          ...(ogImageUrl && { image: ogImageUrl }),
+          ...(post.publishedAt && { datePublished: post.publishedAt }),
+          ...(post.author?.name && {
+            author: {
+              '@type': 'Person',
+              name: post.author.name,
+            },
+          }),
+          publisher: {
+            '@type': 'Organization',
+            name: 'Finndoff',
+            url: siteUrl,
+          },
+          mainEntityOfPage: canonical(`/blogg/${slug}`),
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Hjem',
+              item: siteUrl,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Blogg',
+              item: canonical('/blogg'),
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: post.title,
+              item: canonical(`/blogg/${slug}`),
+            },
+          ],
+        }}
+      />
+      <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
       {/* Back link */}
       <Link
         href="/blogg"
@@ -138,5 +204,6 @@ export default async function BlogPostPage({
         </Link>
       </div>
     </article>
+    </>
   )
 }

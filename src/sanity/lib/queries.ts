@@ -61,6 +61,7 @@ export const productQuery = `*[_type == "product" && slug.current == $slug][0] {
   isAddon,
   seoTitle,
   seoDescription,
+  ogImage,
   sections[] {
     _type,
     _key,
@@ -98,8 +99,21 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   address,
   orgNumber,
   socialMedia,
+  defaultOgImage,
   hubSpotPortalId,
   googleAnalyticsId
+}`
+
+// Sitemap: all product slugs with updatedAt
+export const productSlugsQuery = `*[_type == "product" && defined(slug.current)] {
+  "slug": slug.current,
+  _updatedAt
+}`
+
+// Sitemap: all blog post slugs with updatedAt
+export const blogPostSlugsQuery = `*[_type == "blogPost" && defined(slug.current)] {
+  "slug": slug.current,
+  _updatedAt
 }`
 
 // Fetch all FAQs, grouped by category

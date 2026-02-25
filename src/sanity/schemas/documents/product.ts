@@ -82,6 +82,12 @@ export default defineType({
       rows: 2,
       validation: (Rule) => Rule.max(160),
     }),
+    defineField({
+      name: 'ogImage',
+      title: 'OG-bilde',
+      type: 'image',
+      description: 'Deles på sosiale medier (1200×630 px anbefalt)',
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'subtitle', price: 'price' },

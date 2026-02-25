@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import { pageQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
+import { buildOgImageUrl, buildAlternates } from '@/lib/metadata'
 import type { PageDocument } from '@/types/sanity'
 
 export const revalidate = 60
@@ -11,11 +12,21 @@ export async function generateMetadata(): Promise<Metadata> {
     slug: 'priser',
   })
 
+  const title = page?.seoTitle || 'Priser'
+  const description =
+    page?.seoDescription ||
+    'Enkel og modulær prising. Start med Varsling og legg til det du trenger.'
+  const ogImage = buildOgImageUrl(page?.ogImage)
+
   return {
-    title: page?.seoTitle || 'Priser — Finndoff',
-    description:
-      page?.seoDescription ||
-      'Enkel og modulær prising. Start med Varsling og legg til det du trenger.',
+    title,
+    description,
+    alternates: buildAlternates('/priser'),
+    openGraph: {
+      title,
+      description,
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
+    },
   }
 }
 

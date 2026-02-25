@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { LayoutShell } from "@/components/LayoutShell";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -19,9 +20,24 @@ const workSans = Work_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://finndoff.no";
+
 export const metadata: Metadata = {
-  title: "Finndoff",
-  description: "Finndoff.no",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Finndoff — Finn og vinn offentlige anbud",
+    template: "%s | Finndoff",
+  },
+  description:
+    "Finndoff hjelper norske bedrifter med å finne, forstå og vinne offentlige anbud. Anbudsvarsling, innsikt og AI-drevet anbudshjelp.",
+  openGraph: {
+    type: "website",
+    locale: "nb_NO",
+    siteName: "Finndoff",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +50,25 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${workSans.variable} antialiased`}
       >
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Finndoff",
+            url: siteUrl,
+            logo: `${siteUrl}/icon.png`,
+            description:
+              "Finndoff hjelper norske bedrifter med å finne, forstå og vinne offentlige anbud.",
+            sameAs: [
+              "https://www.linkedin.com/company/finndoff",
+              "https://www.facebook.com/finndoff",
+            ],
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "NO",
+            },
+          }}
+        />
         <LayoutShell>{children}</LayoutShell>
         <VisualEditingWrapper />
         <Analytics />

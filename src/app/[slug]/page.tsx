@@ -4,6 +4,8 @@ import { client } from '@/sanity/lib/client'
 import { productQuery } from '@/sanity/lib/queries'
 import { PageBuilder } from '@/components/PageBuilder'
 import { DynamicIcon } from '@/components/ui/DynamicIcon'
+import { buildOgImageUrl, buildAlternates, canonical } from '@/lib/metadata'
+import { JsonLd } from '@/components/JsonLd'
 import type { ProductDocument } from '@/types/sanity'
 
 export const revalidate = 60
@@ -20,9 +22,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) return {}
 
+  const title = product.seoTitle || product.title
+  const description = product.seoDescription || product.description
+  const ogImage = buildOgImageUrl(product.ogImage)
+
   return {
-    title: product.seoTitle || product.title,
-    description: product.seoDescription || product.description,
+    title,
+    description,
+    alternates: buildAlternates(`/${slug}`),
+    openGraph: {
+      title: title || undefined,
+      description: description || undefined,
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
+    },
   }
 }
 
@@ -34,8 +46,53 @@ export default async function ProductPage({ params }: Props) {
 
   if (!product) notFound()
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finndoff.no'
+
   return (
     <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareApplication',
+          name: `Finndoff ${product.title}`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          ...(product.description && { description: product.description }),
+          offers: product.price
+            ? {
+                '@type': 'Offer',
+                price: product.price,
+                priceCurrency: 'NOK',
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  price: product.price,
+                  priceCurrency: 'NOK',
+                  billingDuration: 'P1M',
+                },
+              }
+            : undefined,
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Hjem',
+              item: siteUrl,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: product.title,
+              item: canonical(`/${slug}`),
+            },
+          ],
+        }}
+      />
       {/* Product header */}
       <section className="bg-white pb-8 pt-16">
         <div className="mx-auto max-w-4xl px-6 text-center">

@@ -89,6 +89,12 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'defaultOgImage',
+      title: 'Standard OG-bilde',
+      type: 'image',
+      description: 'Fallback-bilde for sosiale medier (1200×630 px anbefalt)',
+    }),
+    defineField({
       name: 'hubSpotPortalId',
       title: 'HubSpot Portal ID',
       type: 'string',
