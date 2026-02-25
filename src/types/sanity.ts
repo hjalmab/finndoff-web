@@ -251,6 +251,38 @@ export interface PageDocument {
   sections?: Section[]
 }
 
+export interface BlogPostListItem {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  mainImage?: SanityImage
+  publishedAt?: string
+  category?: string
+  author?: {
+    name: string
+    image?: SanityImage
+  }
+}
+
+export interface BlogPostDocument {
+  _id: string
+  title: string
+  slug: { current: string }
+  excerpt?: string
+  body?: PortableTextBlock[]
+  mainImage?: SanityImage
+  publishedAt?: string
+  category?: string
+  seoTitle?: string
+  seoDescription?: string
+  author?: {
+    name: string
+    role?: string
+    image?: SanityImage
+  }
+}
+
 export interface ProductDocument {
   _id: string
   title?: string
