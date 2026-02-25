@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import type { TrustBarSection } from '@/types/sanity'
-import { SanityImage } from '@/components/ui/SanityImage'
+import { urlFor } from '@/sanity/lib/image'
 
 export function TrustBar({ section }: { section: TrustBarSection }) {
   const isScrolling = section.style === 'scrolling'
@@ -40,12 +41,16 @@ function LogoItem({
 }: {
   logo: NonNullable<TrustBarSection['logos']>[number]
 }) {
+  if (!logo.logo?.asset) return null
+
   const img = (
-    <SanityImage
-      image={logo.logo}
+    <Image
+      src={urlFor(logo.logo).height(80).fit('max').url()}
+      alt={logo.name || ''}
       width={160}
-      height={60}
+      height={40}
       className="h-10 w-auto shrink-0 object-contain grayscale transition-all hover:grayscale-0"
+      unoptimized
     />
   )
 
