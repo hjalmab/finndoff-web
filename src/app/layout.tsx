@@ -6,6 +6,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { LayoutShell } from "@/components/LayoutShell";
 import { JsonLd } from "@/components/JsonLd";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -40,11 +42,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getLogoUrls(): Promise<{ logoUrl: string | null; logoDarkUrl: string | null }> {
+  const settings = await client.fetch<{ logo?: { asset?: { _ref: string } }; logoDark?: { asset?: { _ref: string } } } | null>(
+    `*[_type == "siteSettings"][0]{ logo, logoDark }`,
+    {},
+    { next: { revalidate: 3600 } }
+  );
+  return {
+    logoUrl: settings?.logo?.asset ? urlFor(settings.logo).height(80).fit("max").url() : null,
+    logoDarkUrl: settings?.logoDark?.asset ? urlFor(settings.logoDark).height(80).fit("max").url() : null,
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { logoUrl, logoDarkUrl } = await getLogoUrls();
   return (
     <html lang="no">
       <body
@@ -69,7 +84,7 @@ export default function RootLayout({
             },
           }}
         />
-        <LayoutShell>{children}</LayoutShell>
+        <LayoutShell logoUrl={logoUrl} logoDarkUrl={logoDarkUrl}>{children}</LayoutShell>
         <VisualEditingWrapper />
         <Analytics />
         <SpeedInsights />

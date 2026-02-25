@@ -16,14 +16,14 @@ const companyLinks = [
   { label: 'Kontakt', href: '/om-oss#kontakt' },
 ]
 
-export function Footer() {
+export function Footer({ logoUrl }: { logoUrl?: string | null }) {
   return (
     <footer className="bg-navy-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand column */}
           <div className="md:col-span-2">
-            <Logo className="text-white" />
+            <Logo logoUrl={logoUrl} variant="dark" />
             <p className="mt-4 max-w-md text-sm leading-relaxed text-navy-400">
               Menneske + Maskin = Bedre anbudsresultater
             </p>

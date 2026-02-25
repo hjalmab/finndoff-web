@@ -13,13 +13,13 @@ const navLinks = [
   { label: 'Om oss', href: '/om-oss' },
 ]
 
-export function Navigation() {
+export function Navigation({ logoUrl }: { logoUrl?: string | null }) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
     <header className="glass-light fixed top-0 right-0 left-0 z-50 border-b border-navy-100">
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo className="text-primary-500" />
+        <Logo logoUrl={logoUrl} />
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-1 lg:flex">

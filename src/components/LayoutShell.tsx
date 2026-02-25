@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { Navigation } from './Navigation'
 import { Footer } from './Footer'
 
-export function LayoutShell({ children }: { children: React.ReactNode }) {
+export function LayoutShell({ children, logoUrl, logoDarkUrl }: { children: React.ReactNode; logoUrl?: string | null; logoDarkUrl?: string | null }) {
   const pathname = usePathname()
   const isStudio = pathname.startsWith('/studio')
 
@@ -14,9 +14,9 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Navigation />
+      <Navigation logoUrl={logoUrl} />
       <main className="pt-[72px]">{children}</main>
-      <Footer />
+      <Footer logoUrl={logoDarkUrl} />
     </>
   )
 }
