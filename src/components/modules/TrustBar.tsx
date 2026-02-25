@@ -9,8 +9,8 @@ export function TrustBar({ section }: { section: TrustBarSection }) {
     <section className="bg-navy-50 py-12">
       <div className="mx-auto max-w-7xl px-6">
         {section.title && (
-          <p className="mb-8 text-center text-sm font-medium uppercase tracking-wider text-navy-500">
-            {section.title}
+          <p className="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-navy-500">
+            <TrustBarTitle title={section.title} />
           </p>
         )}
         {isScrolling ? (
@@ -36,6 +36,20 @@ export function TrustBar({ section }: { section: TrustBarSection }) {
   )
 }
 
+function TrustBarTitle({ title }: { title: string }) {
+  // Split on last " av " to accent the latter part (e.g. "Betrodd av STADIG FLERE")
+  const idx = title.toLowerCase().lastIndexOf(' av ')
+  if (idx === -1) return <>{title}</>
+  const before = title.slice(0, idx + 4) // includes " av "
+  const after = title.slice(idx + 4)
+  return (
+    <>
+      {before}
+      <span className="text-accent-600">{after}</span>
+    </>
+  )
+}
+
 function LogoItem({
   logo,
 }: {
@@ -49,7 +63,7 @@ function LogoItem({
       alt={logo.name || ''}
       width={160}
       height={40}
-      className="h-10 w-auto shrink-0 object-contain grayscale transition-all hover:grayscale-0"
+      className="h-10 w-auto shrink-0 object-contain opacity-70 saturate-[0.3] transition-all hover:opacity-100 hover:saturate-100"
       unoptimized
     />
   )
