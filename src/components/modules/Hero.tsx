@@ -2,6 +2,7 @@ import type { HeroSection } from '@/types/sanity'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { Button } from '@/components/ui/Button'
 import { SanityImage } from '@/components/ui/SanityImage'
+import { DeviceFrame } from '@/components/ui/DeviceFrame'
 import { HeroSearchBar } from './HeroSearchBar'
 
 export function Hero({ section }: { section: HeroSection }) {
@@ -40,14 +41,16 @@ export function Hero({ section }: { section: HeroSection }) {
           )}
         </div>
         {section.image?.asset && (
-          <SanityImage
-            image={section.image}
-            width={800}
-            height={600}
-            className="rounded-2xl"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            priority
-          />
+          <DeviceFrame type={section.deviceFrame} style={section.style}>
+            <SanityImage
+              image={section.image}
+              width={800}
+              height={600}
+              className="h-full w-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
+          </DeviceFrame>
         )}
       </div>
     </SectionWrapper>

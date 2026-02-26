@@ -38,10 +38,21 @@ export function PageBuilder({ sections }: { sections?: Section[] }) {
 
   return (
     <>
-      {sections.map((section) => {
+      {sections.map((section, index) => {
         const Component = componentMap[section._type]
         if (!Component) return null
-        return <Component key={section._key} section={section} />
+        const hasExplicitStyle =
+          'style' in section && section.style && section.style !== 'default'
+        const bgClass = hasExplicitStyle
+          ? ''
+          : index % 2 === 1
+            ? 'bg-primary-50'
+            : 'bg-white'
+        return (
+          <div key={section._key} className={bgClass}>
+            <Component section={section} />
+          </div>
+        )
       })}
     </>
   )

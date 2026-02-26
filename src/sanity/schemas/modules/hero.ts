@@ -52,6 +52,23 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'deviceFrame',
+      title: 'Enhetsramme',
+      description: 'Vis bildet i en enhetsramme (laptop, skjerm, nettbrett eller mobil)',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Ingen', value: 'none' },
+          { title: 'Laptop', value: 'laptop' },
+          { title: 'Skjerm', value: 'desktop' },
+          { title: 'Nettbrett', value: 'tablet' },
+          { title: 'Mobil', value: 'phone' },
+        ],
+      },
+      initialValue: 'none',
+      hidden: ({ parent }) => !parent?.image,
+    }),
+    defineField({
       name: 'style',
       title: 'Stil',
       type: 'string',

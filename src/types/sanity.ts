@@ -17,6 +17,8 @@ export interface CtaLink {
 
 export type SectionStyle = 'default' | 'dark' | 'brand'
 
+export type DeviceFrameType = 'none' | 'laptop' | 'desktop' | 'tablet' | 'phone'
+
 // Module types
 
 export interface HeroSection {
@@ -28,6 +30,7 @@ export interface HeroSection {
   secondaryCta?: CtaLink
   showSearchBar?: boolean
   image?: SanityImage
+  deviceFrame?: DeviceFrameType
   style?: SectionStyle
 }
 

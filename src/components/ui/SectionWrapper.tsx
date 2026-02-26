@@ -1,7 +1,7 @@
 import type { SectionStyle } from '@/types/sanity'
 
 const styleMap: Record<SectionStyle, string> = {
-  default: 'bg-white text-navy-900',
+  default: 'text-navy-900',
   dark: 'bg-navy-900 text-white',
   brand: 'bg-primary-500 text-white',
 }
