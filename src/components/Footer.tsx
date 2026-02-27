@@ -11,8 +11,9 @@ const productLinks = [
 
 const companyLinks = [
   { label: 'Om oss', href: '/om-oss' },
-  { label: 'Blogg', href: '/blogg' },
+  { label: 'Nyheter', href: '/nyheter' },
   { label: 'Personvern', href: '/personvern' },
+  { label: 'Vilkår', href: '/vilkar' },
   { label: 'Kontakt', href: '/om-oss#kontakt' },
 ]
 
@@ -20,7 +21,7 @@ export function Footer({ logoUrl }: { logoUrl?: string | null }) {
   return (
     <footer className="bg-navy-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
           {/* Brand column */}
           <div className="md:col-span-2">
             <Logo logoUrl={logoUrl} variant="dark" />
@@ -68,6 +69,25 @@ export function Footer({ logoUrl }: { logoUrl?: string | null }) {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Contact / Addresses */}
+          <div>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-navy-300">
+              Kontakt
+            </h3>
+            <div className="mt-4 space-y-4">
+              <div>
+                <p className="text-sm font-medium text-navy-300">Oslo</p>
+                <p className="text-sm text-navy-400">Haakon VIIs gate 6</p>
+                <p className="text-sm text-navy-400">0191 Oslo</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-navy-300">Narvik</p>
+                <p className="text-sm text-navy-400">Teknologiveien 12</p>
+                <p className="text-sm text-navy-400">8517 Narvik</p>
+              </div>
+            </div>
           </div>
         </div>
 

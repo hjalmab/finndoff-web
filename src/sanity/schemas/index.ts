@@ -7,6 +7,7 @@ import partner from './documents/partner'
 import faq from './documents/faq'
 import customerCase from './documents/customerCase'
 import siteSettings from './documents/siteSettings'
+import legalDocument from './documents/legalDocument'
 
 // Page builder modules
 import hero from './modules/hero'
@@ -35,6 +36,7 @@ export const schemaTypes = [
   faq,
   customerCase,
   siteSettings,
+  legalDocument,
 
   // Modules
   hero,

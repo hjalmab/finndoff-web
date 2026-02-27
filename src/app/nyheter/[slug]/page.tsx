@@ -52,7 +52,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates(`/blogg/${slug}`),
+    alternates: buildAlternates(`/nyheter/${slug}`),
     openGraph: {
       type: 'article',
       title,
@@ -99,7 +99,7 @@ export default async function BlogPostPage({
             name: 'Finndoff',
             url: siteUrl,
           },
-          mainEntityOfPage: canonical(`/blogg/${slug}`),
+          mainEntityOfPage: canonical(`/nyheter/${slug}`),
         }}
       />
       <JsonLd
@@ -116,14 +116,14 @@ export default async function BlogPostPage({
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Blogg',
-              item: canonical('/blogg'),
+              name: 'Nyheter',
+              item: canonical('/nyheter'),
             },
             {
               '@type': 'ListItem',
               position: 3,
               name: post.title,
-              item: canonical(`/blogg/${slug}`),
+              item: canonical(`/nyheter/${slug}`),
             },
           ],
         }}
@@ -131,10 +131,10 @@ export default async function BlogPostPage({
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
       {/* Back link */}
       <Link
-        href="/blogg"
+        href="/nyheter"
         className="mb-8 inline-flex items-center gap-1 text-sm text-navy-500 hover:text-primary-600"
       >
-        &larr; Tilbake til bloggen
+        &larr; Tilbake til nyheter
       </Link>
 
       {/* Main image */}
@@ -197,7 +197,7 @@ export default async function BlogPostPage({
       {/* Back link */}
       <div className="mt-12">
         <Link
-          href="/blogg"
+          href="/nyheter"
           className="inline-flex items-center gap-1 text-sm font-medium text-primary-600 hover:text-primary-700"
         >
           &larr; Se alle innlegg

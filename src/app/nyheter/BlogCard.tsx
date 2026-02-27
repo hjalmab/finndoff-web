@@ -22,7 +22,7 @@ function formatDate(dateString?: string) {
 export function BlogCard({ post }: { post: BlogPostListItem }) {
   return (
     <Link
-      href={`/blogg/${post.slug.current}`}
+      href={`/nyheter/${post.slug.current}`}
       className="group flex flex-col overflow-hidden rounded-xl border border-navy-100 bg-white transition-shadow hover:shadow-lg"
     >
       {post.mainImage?.asset && (

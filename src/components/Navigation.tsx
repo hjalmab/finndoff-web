@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Konsulent', href: '/konsulent' },
   { label: 'Priser', href: '/priser' },
   { label: 'Om oss', href: '/om-oss' },
+  { label: 'Nyheter', href: '/nyheter' },
 ]
 
 export function Navigation({ logoUrl }: { logoUrl?: string | null }) {
@@ -38,13 +39,13 @@ export function Navigation({ logoUrl }: { logoUrl?: string | null }) {
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="https://app.finndoff.no"
+            href="https://login.finndoff.no/"
             className="font-display rounded-lg border-2 border-primary-500 px-5 py-2 text-sm font-semibold text-primary-500 transition-colors hover:bg-primary-50"
           >
             Logg inn
           </a>
           <a
-            href="https://app.finndoff.no/register"
+            href="https://finndoff.no/signup"
             className="font-display rounded-lg bg-accent-500 px-5 py-2 text-sm font-semibold text-navy-900 transition-colors hover:bg-accent-600"
           >
             Prøv gratis
@@ -90,13 +91,13 @@ export function Navigation({ logoUrl }: { logoUrl?: string | null }) {
             ))}
             <div className="flex flex-col gap-3 pt-4">
               <a
-                href="https://app.finndoff.no"
+                href="https://login.finndoff.no/"
                 className="font-display rounded-lg border-2 border-primary-500 px-5 py-2.5 text-center text-sm font-semibold text-primary-500 transition-colors hover:bg-primary-50"
               >
                 Logg inn
               </a>
               <a
-                href="https://app.finndoff.no/register"
+                href="https://finndoff.no/signup"
                 className="font-display rounded-lg bg-accent-500 px-5 py-2.5 text-center text-sm font-semibold text-navy-900 transition-colors hover:bg-accent-600"
               >
                 Prøv gratis

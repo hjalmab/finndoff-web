@@ -302,6 +302,16 @@ export interface ProductDocument {
   sections?: Section[]
 }
 
+export interface LegalDocument {
+  _id: string
+  title: { no: string; en: string }
+  slug: { current: string }
+  body: { no: PortableTextBlock[]; en: PortableTextBlock[] }
+  lastUpdated?: string
+  seoTitle?: string
+  seoDescription?: string
+}
+
 export interface SitemapEntry {
   slug: string
   _updatedAt: string

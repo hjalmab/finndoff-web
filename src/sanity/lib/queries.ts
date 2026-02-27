@@ -168,6 +168,17 @@ export const personsQuery = `*[_type == "person"] | order(name asc) {
   type
 }`
 
+// Fetch legal document by slug
+export const legalDocumentQuery = `*[_type == "legalDocument" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  body,
+  lastUpdated,
+  seoTitle,
+  seoDescription
+}`
+
 // Fetch all customer cases
 export const customerCasesQuery = `*[_type == "customerCase"] | order(title asc) {
   _id,
