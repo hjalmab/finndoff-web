@@ -15,6 +15,7 @@ import featureGrid from './modules/featureGrid'
 import pricingTable from './modules/pricingTable'
 import trustBar from './modules/trustBar'
 import testimonial from './modules/testimonial'
+import testimonialGrid from './modules/testimonialGrid'
 import videoEmbed from './modules/videoEmbed'
 import ctaSection from './modules/ctaSection'
 import faqAccordion from './modules/faqAccordion'
@@ -44,6 +45,7 @@ export const schemaTypes = [
   pricingTable,
   trustBar,
   testimonial,
+  testimonialGrid,
   videoEmbed,
   ctaSection,
   faqAccordion,

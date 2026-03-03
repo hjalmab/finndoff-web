@@ -69,6 +69,22 @@ export default defineType({
       hidden: ({ parent }) => !parent?.image,
     }),
     defineField({
+      name: 'stats',
+      title: 'Statistikk',
+      description: 'Vises under CTA-knappene. F.eks: verdi "1 000+" / etikett "bedrifter"',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'value', title: 'Verdi', type: 'string', validation: (Rule: any) => Rule.required() },
+            { name: 'label', title: 'Etikett', type: 'string', validation: (Rule: any) => Rule.required() },
+          ],
+          preview: { select: { title: 'value', subtitle: 'label' } },
+        },
+      ],
+    }),
+    defineField({
       name: 'style',
       title: 'Stil',
       type: 'string',

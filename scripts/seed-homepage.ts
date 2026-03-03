@@ -24,35 +24,54 @@ const portableText = (text: string) => [
   },
 ];
 
+// App-screenshot: innsikt-hero.png (904x488, landscape — passer laptop-rammen)
+const INNSIKT_HERO_IMAGE = "image-a4853624ba671ef7d88359d0d674e83b18d978a3-904x488-png";
+
 const homepage = {
   _id: "page-hjem",
   _type: "page",
   title: "Hjem",
   slug: { _type: "slug", current: "hjem" },
-  seoTitle: "Finndoff — Spar tid og vinn flere anbud",
+  seoTitle: "Finndoff — Finn og vinn offentlige anbud",
   seoDescription:
-    "Anbudsekspertise og AI-verktøy under samme tak. Varsling, innsikt og anbudshjelp for norske bedrifter i offentlig sektor.",
+    "Over 1 000 norske bedrifter bruker Finndoff for å aldri gå glipp av relevante anbud. Ekspertoppsett, AI-verktøy og anbudshjelp — alt under samme tak.",
   sections: [
-    // 1. Hero
+
+    // ── 1. HERO ───────────────────────────────────────────────────────────
+    // Endring #1: kvantifiserte stats under CTA
+    // Endring #5: app-screenshot i laptop-ramme
     {
       _type: "hero",
       _key: key(),
-      headline: "Spar tid og vinn flere anbud",
+      headline: "Finn og vinn ditt neste offentlige anbud",
       subheadline:
-        "Anbudsekspertise og AI-verktøy under samme tak hjelper deg å vinne oppdrag i offentlig sektor.",
-      showSearchBar: true,
+        "Over 1 000 norske bedrifter bruker Finndoff for å aldri gå glipp av relevante anbud. Vi setter opp alt for deg — ingen selvbetjening.",
+      showSearchBar: false,
       primaryCta: {
-        text: "Prøv gratis",
-        link: "https://app.finndoff.no/register",
+        text: "Start gratis prøveperiode",
+        link: "https://finndoff.no/signup",
       },
       secondaryCta: {
         text: "Se hvordan det fungerer",
-        link: "#produkter",
+        link: "#slik-fungerer-det",
       },
+      // Endring #1: stats
+      stats: [
+        { _key: key(), value: "1 000+", label: "norske bedrifter" },
+        { _key: key(), value: "4+ timer", label: "spart per uke" },
+        { _key: key(), value: "100 %", label: "ekspertoppsett" },
+      ],
+      // Endring #5: laptop device frame med app-screenshot
+      image: {
+        _type: "image",
+        asset: { _type: "reference", _ref: INNSIKT_HERO_IMAGE },
+        alt: "Finndoff Innsikt — oversikt over anbud og markedsdata",
+      },
+      deviceFrame: "laptop",
       style: "default",
     },
 
-    // 2. TrustBar
+    // ── 2. TRUST BAR ──────────────────────────────────────────────────────
     {
       _type: "trustBar",
       _key: key(),
@@ -75,13 +94,10 @@ const homepage = {
         "NINA",
         "Medicus",
         "Taraldsvik",
-      ].map((name) => ({
-        _key: key(),
-        name,
-      })),
+      ].map((name) => ({ _key: key(), name })),
     },
 
-    // 3. FeatureGrid
+    // ── 3. FEATURE GRID (produkter) ───────────────────────────────────────
     {
       _type: "featureGrid",
       _key: key(),
@@ -125,19 +141,40 @@ const homepage = {
       ],
     },
 
-    // 4. Timeline
+    // ── 4. MID-PAGE CTA ───────────────────────────────────────────────────
+    // Endring #7: CTA mellom featureGrid og timeline
+    {
+      _type: "ctaSection",
+      _key: key(),
+      title: "Klar til å aldri gå glipp av et anbud igjen?",
+      description:
+        "Start med en gratis prøveperiode. Ingen bindingstid, ingen kredittkort.",
+      primaryCta: {
+        text: "Prøv gratis i dag",
+        link: "https://finndoff.no/signup",
+      },
+      secondaryCta: {
+        text: "Se priser",
+        link: "/priser",
+      },
+      style: "brand",
+    },
+
+    // ── 5. TIMELINE ───────────────────────────────────────────────────────
+    // Endring #3: reframed — fokus på "vi gjør alt", ikke antall dager
     {
       _type: "timeline",
       _key: key(),
-      title: "Kom i gang på 20 dager",
-      subtitle: "Vi setter opp alt for deg — ingen selvbetjening.",
+      title: "Vi gjør jobben — du vinner anbud",
+      subtitle:
+        "I motsetning til selvbetjeningsverktøy setter vi opp alt for deg, basert på erfaring fra over 1 000 bedrifter.",
       steps: [
         {
           _key: key(),
           stepNumber: 1,
           title: "Oppstartsmøte",
           description:
-            "Vi kartlegger din bedrift, bransje og hvilke oppdrag du ønsker å vinne.",
+            "Vi kartlegger din bedrift og bransje. Du trenger bare 30 minutter — vi tar oss av resten.",
           icon: "calendar",
           duration: "Dag 1",
         },
@@ -146,52 +183,174 @@ const homepage = {
           stepNumber: 2,
           title: "Ekspertoppsett",
           description:
-            "Våre spesialister setter opp søkeprofilen din basert på erfaring fra over 1 000 bedrifter.",
+            "Våre spesialister konfigurerer søkeprofilen din. Ingen skjemaer å fylle ut — vi bruker vår erfaring fra 1 000+ bedrifter.",
           icon: "settings",
           duration: "Dag 2–5",
         },
         {
           _key: key(),
           stepNumber: 3,
-          title: "Første varsler",
+          title: "Første varsler i innboksen",
           description:
-            "Du mottar de første anbudsvarslene og gir tilbakemelding på relevans.",
+            "Du mottar relevante anbud direkte på e-post. Enkle å lese, med fargekoder og tydelig oppsett.",
           icon: "mail",
           duration: "Dag 5–10",
         },
         {
           _key: key(),
           stepNumber: 4,
-          title: "Finjustering",
+          title: "Vi finjusterer for deg",
           description:
-            "Vi justerer profilen basert på dine tilbakemeldinger for optimal treffsikkerhet.",
+            "Gi én tommel opp eller ned på varslene — vi justerer profilen automatisk til du bare får det som er relevant.",
           icon: "sliders",
           duration: "Dag 10–15",
         },
         {
           _key: key(),
           stepNumber: 5,
-          title: "Optimalisert",
+          title: "Null støy, kun muligheter",
           description:
-            "Profilen er ferdig tilpasset. Du får kun relevante anbud — ingen støy.",
+            "Profilen er kalibrert. Du bruker 30 minutter i uken på anbud i stedet for 4–5 timer med manuelt søk.",
           icon: "check-circle",
           duration: "Dag 20",
         },
       ],
     },
 
-    // 5. Testimonial
+    // ── 6. COMPARISON TABLE ───────────────────────────────────────────────
+    // Endring #8: sammenligning vs Doffin og manuelt søk
     {
-      _type: "testimonial",
+      _type: "comparisonTable",
       _key: key(),
-      quote:
-        "Vi har et bevisst forhold til vår rolle som samfunnsbygger. Finndoff hjelper oss å bruke tiden på det vi er best på – å bygge.",
-      name: "Tore Killi",
-      role: "Daglig leder",
-      company: "Brødrene Killi AS",
+      title: "Finndoff vs. å gjøre det selv",
+      subtitle:
+        "Doffin er gratis — men tid og kompetanse koster penger. Se hva du faktisk får.",
+      columns: [
+        { _key: key(), name: "Finndoff", highlighted: true },
+        { _key: key(), name: "Doffin (gratis)", highlighted: false },
+        { _key: key(), name: "Manuelt søk", highlighted: false },
+      ],
+      rows: [
+        { _key: key(), feature: "Automatiske varsler på e-post", values: ["true", "false", "false"] },
+        { _key: key(), feature: "Ekspertoppsatt søkeprofil", values: ["true", "false", "false"] },
+        { _key: key(), feature: "AI-analyse av konkurransegrunnlag", values: ["true", "false", "false"] },
+        { _key: key(), feature: "Markedsinnsikt og konkurranseanalyse", values: ["true", "false", "false"] },
+        { _key: key(), feature: "Anbudshjelp fra konsulent", values: ["true", "false", "false"] },
+        { _key: key(), feature: "Tid brukt per uke", values: ["~30 min", "5–8 timer", "8+ timer"] },
+        { _key: key(), feature: "Bransjepartner-rabatter", values: ["true", "false", "false"] },
+        { _key: key(), feature: "Onboarding og løpende støtte", values: ["true", "false", "false"] },
+      ],
     },
 
-    // 6. CtaSection
+    // ── 7. TESTIMONIAL GRID ───────────────────────────────────────────────
+    // Endring #2: 3 ekte kundesitatrader
+    {
+      _type: "testimonialGrid",
+      _key: key(),
+      title: "Hva kundene våre sier",
+      subtitle: "Over 1 000 norske bedrifter stoler på Finndoff for å vinne offentlige anbud.",
+      items: [
+        {
+          _key: key(),
+          quote:
+            "Vi har et bevisst forhold til vår rolle som samfunnsbygger. Finndoff hjelper oss å bruke tiden på det vi er best på – å bygge.",
+          name: "Tore Killi",
+          role: "Daglig leder",
+          company: "Brødrene Killi AS",
+        },
+        {
+          _key: key(),
+          quote:
+            "Vi liker Finndoff anbudsvarsling fordi det er en rimelig tjeneste med god presisjon. Vi vet at det er mennesker med høy kompetanse om offentlige anskaffelser og teknologi som står bak. Vi har maksimal tid til å gjøre tilbud ferdig i god tid før fristen.",
+          name: "Kenneth Kuraas",
+          role: "Markedssjef",
+          company: "Kuraas AS",
+        },
+        {
+          _key: key(),
+          quote:
+            "I denne bransjen er folk ofte praktisk anlagt — vi har ikke alltid tid til å sette oss inn i kompliserte systemer. Finndoff sine e-poster er enkle å lese, med fargekoder og tydelig oppsett. Dere har vært veldig imøtekommende hele veien.",
+          name: "Jo Leander Paulsen",
+          role: "Ingeniør",
+          company: "Nesna Maskinstasjon",
+        },
+      ],
+    },
+
+    // ── 8. PARTNER SEKSJON ────────────────────────────────────────────────
+    // Endring #4: fremhev MEF, Byggmesterforbundet, NESO som offisielle partnere
+    {
+      _type: "featureGrid",
+      _key: key(),
+      title: "Offisielle bransjepartnere",
+      subtitle:
+        "Finndoff er offisiell samarbeidspartner med de ledende bransjeorganisasjonene i norsk bygg, anlegg og fagarbeid. Medlemmer får skreddersydde profiler og rabatt.",
+      columns: 3,
+      features: [
+        {
+          _key: key(),
+          title: "Maskinentreprenørenes Forbund (MEF)",
+          description:
+            "Offisiell partner for MEF Nords 334 medlemsbedrifter. Skreddersydde varslingsprofiler for anleggsbransjen, med særlig gunstige betingelser for MEF-medlemmer.",
+          icon: "hard-hat",
+          link: "/nyheter/partnerskap-med-maskinentreprenorenes-forbund-mef-nord",
+        },
+        {
+          _key: key(),
+          title: "Byggmesterforbundet",
+          description:
+            "Samarbeidsavtale med Byggmesterforbundet sikrer at norske byggmestere aldri går glipp av relevante offentlige oppdrag i sitt distrikt.",
+          icon: "building-2",
+          link: "/nyheter/samarbeidsavtale-med-byggmesterforbundet",
+        },
+        {
+          _key: key(),
+          title: "NESO",
+          description:
+            "Finndoff er offisiell partner med NESO — Norsk Elektro Serviceforbund. Medlemmer får skreddersydde anbudsvarsler for elektro og tekniske fag til medlemspris.",
+          icon: "zap",
+          link: "/nyheter/finndoff-inngar-samarbeid-med-neso-skreddersydd-anbudsvarsling-til-medlemspris",
+        },
+      ],
+    },
+
+    // ── 9. TRUST SIGNALER ─────────────────────────────────────────────────
+    // Endring #6: GDPR, norsk drift, kryptert, ingen binding
+    {
+      _type: "featureGrid",
+      _key: key(),
+      title: "Trygt og enkelt",
+      subtitle: "Vi er et norsk selskap som tar personvern på alvor.",
+      columns: 4,
+      features: [
+        {
+          _key: key(),
+          title: "Norsk selskap",
+          description: "Etablert i 2021. Kontor i Oslo og Narvik. Alle data lagres innenfor EØS.",
+          icon: "flag",
+        },
+        {
+          _key: key(),
+          title: "GDPR-sertifisert",
+          description: "Vi behandler persondata i henhold til GDPR og norsk personvernlovgivning.",
+          icon: "shield-check",
+        },
+        {
+          _key: key(),
+          title: "Kryptert kommunikasjon",
+          description: "All kommunikasjon mellom deg og Finndoff er kryptert med TLS/SSL.",
+          icon: "lock",
+        },
+        {
+          _key: key(),
+          title: "Ingen bindingstid",
+          description: "Prøv gratis, og si opp når du vil. Ingen skjulte gebyrer eller bindingstid.",
+          icon: "circle-check",
+        },
+      ],
+    },
+
+    // ── 10. SLUTT-CTA ─────────────────────────────────────────────────────
     {
       _type: "ctaSection",
       _key: key(),
@@ -200,16 +359,16 @@ const homepage = {
         "Start med en gratis prøveperiode og se hvilke anbud som passer din bedrift.",
       primaryCta: {
         text: "Start gratis prøveperiode",
-        link: "https://app.finndoff.no/register",
+        link: "https://finndoff.no/signup",
       },
       secondaryCta: {
         text: "Snakk med oss",
-        link: "/kontakt",
+        link: "/om-oss#kontakt",
       },
       style: "brand",
     },
 
-    // 7. FaqAccordion
+    // ── 11. FAQ ───────────────────────────────────────────────────────────
     {
       _type: "faqAccordion",
       _key: key(),
@@ -238,23 +397,30 @@ const homepage = {
         },
         {
           _key: key(),
-          question: "Hva er forskjellen fra gratistjenester som Doffin?",
+          question: "Hva er forskjellen fra Doffin?",
           answer: portableText(
-            "Doffin er en offentlig database der du selv må søke og filtrere. Finndoff setter opp en ekspertkonfigurert søkeprofil for din bedrift, sender varsler automatisk, og gir deg AI-verktøy for å analysere og besvare anbud raskere."
+            "Doffin er en offentlig database der du selv må søke og filtrere manuelt — noe som tar 5–8 timer i uken. Finndoff setter opp en ekspertkonfigurert søkeprofil for din bedrift, sender varsler automatisk, og gir deg AI-verktøy for å analysere og besvare anbud raskere. Du bruker 30 minutter i uken i stedet."
           ),
         },
         {
           _key: key(),
           question: "Kan jeg prøve gratis?",
           answer: portableText(
-            "Ja! Vi tilbyr en gratis prøveperiode der du kan teste varsling og se hvilke anbud som er relevante for din bedrift. Ingen bindingstid."
+            "Ja! Vi tilbyr en gratis prøveperiode der du kan teste varsling og se hvilke anbud som er relevante for din bedrift. Ingen bindingstid, ingen kredittkort."
           ),
         },
         {
           _key: key(),
           question: "Trenger jeg å sette opp noe selv?",
           answer: portableText(
-            "Nei. I motsetning til andre tjenester setter våre eksperter opp alt for deg. Vi konfigurerer søkeprofilen basert på erfaring fra over 1 000 bedrifter i din bransje."
+            "Nei. I motsetning til andre tjenester setter våre eksperter opp alt for deg. Vi konfigurerer søkeprofilen basert på erfaring fra over 1 000 bedrifter i din bransje. Du trenger bare 30 minutter til et oppstartsmøte."
+          ),
+        },
+        {
+          _key: key(),
+          question: "Er Finndoff kun for bygg og anlegg?",
+          answer: portableText(
+            "Nei — Finndoff brukes av bedrifter i mange bransjer, fra kjøttindustri og helsesektoren til IT og rådgivning. Vi har spesialkompetanse på bygg, anlegg og tekniske fag, men kan sette opp profiler for alle som leverer til offentlig sektor."
           ),
         },
       ],
@@ -263,21 +429,30 @@ const homepage = {
 };
 
 async function seed() {
-  console.log("Seeding homepage to Sanity...");
+  console.log("🌱 Seeder forbedret hjemmeside til Sanity...\n");
 
   if (!process.env.SANITY_API_WRITE_TOKEN) {
-    console.error(
-      "Missing SANITY_API_WRITE_TOKEN in .env.local\n" +
-        "Create a write token at sanity.io/manage → API → Tokens"
-    );
+    console.error("❌ Mangler SANITY_API_WRITE_TOKEN i .env.local");
     process.exit(1);
   }
 
   try {
     await client.createOrReplace(homepage);
-    console.log("Homepage created/updated successfully (id: page-hjem)");
+    console.log("✅ Hjemmeside oppdatert (id: page-hjem)");
+    console.log("\n📋 Seksjoner seeded:");
+    console.log("   1. Hero med stats + laptop-screenshot");
+    console.log("   2. TrustBar (16 logoer)");
+    console.log("   3. FeatureGrid (4 produkter)");
+    console.log("   4. Mid-page CTA (brand-stil)");
+    console.log("   5. Timeline (reframed: vi gjør alt for deg)");
+    console.log("   6. ComparisonTable (vs Doffin vs manuelt søk)");
+    console.log("   7. TestimonialGrid (3 ekte kundesitatrader)");
+    console.log("   8. FeatureGrid (partnere: MEF, Byggmesterforbundet, NESO)");
+    console.log("   9. FeatureGrid (trust-signaler: GDPR, norsk drift, kryptert, ingen binding)");
+    console.log("  10. Slutt-CTA");
+    console.log("  11. FAQ (7 spørsmål)");
   } catch (err) {
-    console.error("Failed to seed homepage:", err);
+    console.error("❌ Seed feilet:", err);
     process.exit(1);
   }
 }

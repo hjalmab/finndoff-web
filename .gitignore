@@ -36,6 +36,9 @@ yarn-error.log*
 # internal docs
 /docs/
 
+# wix migration exports (genererte data, ikke kildekode)
+/scripts/wix-export/
+
 # sanity
 /.sanity/
 /dist/

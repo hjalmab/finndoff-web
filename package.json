@@ -6,9 +6,15 @@
     "dev": "next dev -p 3300",
     "build": "next build",
     "start": "next start -p 3300",
-    "lint": "eslint"
+    "lint": "eslint",
+    "wix:crawl": "npx tsx scripts/crawl-wix-blog.ts",
+    "wix:import": "npx tsx scripts/import-wix-blog.ts",
+    "wix:redirects": "npx tsx scripts/apply-wix-redirects.ts",
+    "wix:images": "npx tsx scripts/upload-wix-images.ts",
+    "wix:migrate": "npx tsx scripts/crawl-wix-blog.ts && npx tsx scripts/import-wix-blog.ts && npx tsx scripts/apply-wix-redirects.ts && npx tsx scripts/upload-wix-images.ts"
   },
   "dependencies": {
+    "@mendable/firecrawl-js": "^4.15.1",
     "@portabletext/react": "^6.0.2",
     "@sanity/image-url": "^2.0.3",
     "@sanity/vision": "^5.8.1",
