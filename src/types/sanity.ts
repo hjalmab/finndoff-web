@@ -31,7 +31,22 @@ export interface HeroSection {
   showSearchBar?: boolean
   image?: SanityImage
   deviceFrame?: DeviceFrameType
+  stats?: { value: string; label: string }[]
   style?: SectionStyle
+}
+
+export interface TestimonialGridSection {
+  _type: 'testimonialGrid'
+  _key: string
+  title?: string
+  subtitle?: string
+  items?: {
+    quote: string
+    name?: string
+    role?: string
+    company?: string
+    image?: SanityImage
+  }[]
 }
 
 export interface FeatureGridSection {
@@ -233,6 +248,7 @@ export type Section =
   | PricingTableSection
   | TrustBarSection
   | TestimonialSection
+  | TestimonialGridSection
   | VideoEmbedSection
   | CtaSectionSection
   | FaqAccordionSection

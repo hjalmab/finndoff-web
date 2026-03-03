@@ -5,6 +5,7 @@ import { FeatureGrid } from './modules/FeatureGrid'
 import { PricingTable } from './modules/PricingTable'
 import { TrustBar } from './modules/TrustBar'
 import { Testimonial } from './modules/Testimonial'
+import { TestimonialGrid } from './modules/TestimonialGrid'
 import { FaqAccordion } from './modules/FaqAccordion'
 import { VideoEmbed } from './modules/VideoEmbed'
 import { Timeline } from './modules/Timeline'
@@ -22,6 +23,7 @@ const componentMap: Record<string, React.ComponentType<{ section: any }>> = {
   pricingTable: PricingTable,
   trustBar: TrustBar,
   testimonial: Testimonial,
+  testimonialGrid: TestimonialGrid,
   faqAccordion: FaqAccordion,
   videoEmbed: VideoEmbed,
   timeline: Timeline,

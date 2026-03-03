@@ -39,6 +39,18 @@ export function Hero({ section }: { section: HeroSection }) {
               </div>
             )
           )}
+          {section.stats && section.stats.length > 0 && (
+            <div className="mt-10 flex flex-wrap gap-8 border-t border-navy-100 pt-8">
+              {section.stats.map((stat, i) => (
+                <div key={i}>
+                  <p className="font-display text-3xl font-bold text-primary-600">
+                    {stat.value}
+                  </p>
+                  <p className="mt-0.5 text-sm text-navy-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         {section.image?.asset && (
           <DeviceFrame type={section.deviceFrame} style={section.style}>

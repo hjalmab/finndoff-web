@@ -46,6 +46,7 @@ export default defineType({
         { type: 'pricingTable' },
         { type: 'trustBar' },
         { type: 'testimonial' },
+        { type: 'testimonialGrid' },
         { type: 'videoEmbed' },
         { type: 'ctaSection' },
         { type: 'faqAccordion' },
